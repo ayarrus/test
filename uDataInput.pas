@@ -844,6 +844,10 @@ begin
       Device.EncryptionType := EncryptionType;
     UpdateDeviceData(Device, IPAddress, Port, Packet.Header.SequenceNumber, Device.EncryptionType,  Socket);
 
+    // Si la clave esta seteada fuerzo rapido el envio de clave.
+    ProcessJoin(EncryptionType, Packet, Device, Socket);
+
+
     // Queue packet for listeners
     QueuePacketForListeners(Packet, Len);
 
